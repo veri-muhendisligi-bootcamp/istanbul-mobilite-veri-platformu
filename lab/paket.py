@@ -28,7 +28,7 @@ def numara(deger):
 
 def oturum(no):
     adres = f"https://github.com/{SABLON}/releases/download/oturum-{no}/oturum-{no}.zip"
-    print(f"Oturum {no} paketi indiriliyor: {adres}")
+    print(f"Oturum {int(no)} paketi indiriliyor: {adres}")
     try:
         with urllib.request.urlopen(adres, timeout=60) as yanit:
             veri = yanit.read()
@@ -49,11 +49,12 @@ def oturum(no):
             hedef.parent.mkdir(parents=True, exist_ok=True)
             hedef.write_bytes(arsiv.read(oge))
             eklenen.append(oge.filename)
-    for ad in eklenen:
+    for ad in sorted(eklenen):
         print(f"  eklendi: {ad}")
-    for ad in korunan:
+    for ad in sorted(korunan):
         print(f"  zaten var, dokunulmadı: {ad}")
-    print(f"Oturum {no} dosyaları hazır. Görevler oturumlar/{no}/OKU-BENI.md dosyasında.")
+    print(f"Oturum {int(no)} dosyaları hazır.")
+    print(f"Görevleri oturumlar/{no}/OKU-BENI.md dosyası anlatır.")
 
 
 def odev_kontrol(no):
