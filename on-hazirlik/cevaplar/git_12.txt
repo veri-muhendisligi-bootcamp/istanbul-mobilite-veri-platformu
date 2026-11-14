@@ -1,0 +1,4 @@
+# Görev 12 | Git | Geçmişte arama
+# on-hazirlik/git-alistirma deposunda hatlar.csv dosyasına TF1 satırını ekleyen commit'in hash'i
+# (en az ilk 7 karakter) bu yorumların altındaki satıra gelir.
+

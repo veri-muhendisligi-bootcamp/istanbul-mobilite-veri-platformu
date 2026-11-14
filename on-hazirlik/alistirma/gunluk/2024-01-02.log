@@ -1,0 +1,240 @@
+2024-01-02 00:00:00 BILGI bildirim İşlem tamamlandı
+2024-01-02 00:07:13 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 00:14:26 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 00:21:39 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 00:28:52 HATA odeme-servisi İşlem tamamlanamadı
+2024-01-02 00:35:05 BILGI bildirim İşlem tamamlandı
+2024-01-02 00:42:18 UYARI veri-aktarim Yanıt süresi uzadı
+2024-01-02 00:49:31 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 00:56:44 BILGI bildirim İşlem tamamlandı
+2024-01-02 00:03:57 BILGI bildirim İşlem tamamlandı
+2024-01-02 01:10:10 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 01:17:23 HATA hat-planlama İşlem tamamlanamadı
+2024-01-02 01:24:36 BILGI bildirim İşlem tamamlandı
+2024-01-02 01:31:49 BILGI bildirim İşlem tamamlandı
+2024-01-02 01:38:02 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 01:45:15 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 01:52:28 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 01:59:41 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 01:06:54 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 01:13:07 HATA hat-planlama İşlem tamamlanamadı
+2024-01-02 02:20:20 UYARI kart-okuyucu Yanıt süresi uzadı
+2024-01-02 02:27:33 HATA kart-okuyucu İşlem tamamlanamadı
+2024-01-02 02:34:46 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 02:41:59 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 02:48:12 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 02:55:25 HATA veri-aktarim İşlem tamamlanamadı
+2024-01-02 02:02:38 HATA hat-planlama İşlem tamamlanamadı
+2024-01-02 02:09:51 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 02:16:04 UYARI bildirim Yanıt süresi uzadı
+2024-01-02 02:23:17 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 03:30:30 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 03:37:43 UYARI hat-planlama Yanıt süresi uzadı
+2024-01-02 03:44:56 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 03:51:09 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 03:58:22 BILGI bildirim İşlem tamamlandı
+2024-01-02 03:05:35 BILGI bildirim İşlem tamamlandı
+2024-01-02 03:12:48 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 03:19:01 BILGI bildirim İşlem tamamlandı
+2024-01-02 03:26:14 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 03:33:27 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 04:40:40 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 04:47:53 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 04:54:06 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 04:01:19 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 04:08:32 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 04:15:45 UYARI veri-aktarim Yanıt süresi uzadı
+2024-01-02 04:22:58 BILGI bildirim İşlem tamamlandı
+2024-01-02 04:29:11 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 04:36:24 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 04:43:37 HATA odeme-servisi İşlem tamamlanamadı
+2024-01-02 05:50:50 HATA hat-planlama İşlem tamamlanamadı
+2024-01-02 05:57:03 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 05:04:16 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 05:11:29 UYARI hat-planlama Yanıt süresi uzadı
+2024-01-02 05:18:42 BILGI bildirim İşlem tamamlandı
+2024-01-02 05:25:55 BILGI bildirim İşlem tamamlandı
+2024-01-02 05:32:08 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 05:39:21 UYARI veri-aktarim Yanıt süresi uzadı
+2024-01-02 05:46:34 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 05:53:47 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 06:00:00 BILGI bildirim İşlem tamamlandı
+2024-01-02 06:07:13 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 06:14:26 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 06:21:39 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 06:28:52 UYARI kart-okuyucu Yanıt süresi uzadı
+2024-01-02 06:35:05 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 06:42:18 UYARI hat-planlama Yanıt süresi uzadı
+2024-01-02 06:49:31 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 06:56:44 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 06:03:57 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 07:10:10 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 07:17:23 HATA kart-okuyucu İşlem tamamlanamadı
+2024-01-02 07:24:36 HATA odeme-servisi İşlem tamamlanamadı
+2024-01-02 07:31:49 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 07:38:02 BILGI bildirim İşlem tamamlandı
+2024-01-02 07:45:15 UYARI bildirim Yanıt süresi uzadı
+2024-01-02 07:52:28 UYARI kart-okuyucu Yanıt süresi uzadı
+2024-01-02 07:59:41 UYARI odeme-servisi Yanıt süresi uzadı
+2024-01-02 07:06:54 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 07:13:07 BILGI bildirim İşlem tamamlandı
+2024-01-02 08:20:20 BILGI bildirim İşlem tamamlandı
+2024-01-02 08:27:33 HATA hat-planlama İşlem tamamlanamadı
+2024-01-02 08:34:46 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 08:41:59 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 08:48:12 UYARI veri-aktarim Yanıt süresi uzadı
+2024-01-02 08:55:25 UYARI kart-okuyucu Yanıt süresi uzadı
+2024-01-02 08:02:38 HATA hat-planlama İşlem tamamlanamadı
+2024-01-02 08:09:51 HATA hat-planlama İşlem tamamlanamadı
+2024-01-02 08:16:04 UYARI kart-okuyucu Yanıt süresi uzadı
+2024-01-02 08:23:17 UYARI bildirim Yanıt süresi uzadı
+2024-01-02 09:30:30 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 09:37:43 BILGI bildirim İşlem tamamlandı
+2024-01-02 09:44:56 HATA bildirim İşlem tamamlanamadı
+2024-01-02 09:51:09 UYARI hat-planlama Yanıt süresi uzadı
+2024-01-02 09:58:22 HATA hat-planlama İşlem tamamlanamadı
+2024-01-02 09:05:35 UYARI hat-planlama Yanıt süresi uzadı
+2024-01-02 09:12:48 HATA veri-aktarim İşlem tamamlanamadı
+2024-01-02 09:19:01 UYARI odeme-servisi Yanıt süresi uzadı
+2024-01-02 09:26:14 HATA kart-okuyucu İşlem tamamlanamadı
+2024-01-02 09:33:27 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 10:40:40 HATA odeme-servisi İşlem tamamlanamadı
+2024-01-02 10:47:53 UYARI hat-planlama Yanıt süresi uzadı
+2024-01-02 10:54:06 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 10:01:19 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 10:08:32 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 10:15:45 HATA kart-okuyucu İşlem tamamlanamadı
+2024-01-02 10:22:58 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 10:29:11 UYARI veri-aktarim Yanıt süresi uzadı
+2024-01-02 10:36:24 HATA odeme-servisi İşlem tamamlanamadı
+2024-01-02 10:43:37 BILGI bildirim İşlem tamamlandı
+2024-01-02 11:50:50 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 11:57:03 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 11:04:16 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 11:11:29 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 11:18:42 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 11:25:55 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 11:32:08 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 11:39:21 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 11:46:34 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 11:53:47 HATA hat-planlama İşlem tamamlanamadı
+2024-01-02 12:00:00 BILGI bildirim İşlem tamamlandı
+2024-01-02 12:07:13 HATA kart-okuyucu İşlem tamamlanamadı
+2024-01-02 12:14:26 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 12:21:39 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 12:28:52 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 12:35:05 BILGI bildirim İşlem tamamlandı
+2024-01-02 12:42:18 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 12:49:31 UYARI bildirim Yanıt süresi uzadı
+2024-01-02 12:56:44 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 12:03:57 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 13:10:10 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 13:17:23 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 13:24:36 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 13:31:49 BILGI bildirim İşlem tamamlandı
+2024-01-02 13:38:02 UYARI veri-aktarim Yanıt süresi uzadı
+2024-01-02 13:45:15 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 13:52:28 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 13:59:41 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 13:06:54 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 13:13:07 BILGI bildirim İşlem tamamlandı
+2024-01-02 14:20:20 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 14:27:33 UYARI veri-aktarim Yanıt süresi uzadı
+2024-01-02 14:34:46 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 14:41:59 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 14:48:12 BILGI bildirim İşlem tamamlandı
+2024-01-02 14:55:25 BILGI bildirim İşlem tamamlandı
+2024-01-02 14:02:38 UYARI hat-planlama Yanıt süresi uzadı
+2024-01-02 14:09:51 HATA hat-planlama İşlem tamamlanamadı
+2024-01-02 14:16:04 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 14:23:17 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 15:30:30 UYARI bildirim Yanıt süresi uzadı
+2024-01-02 15:37:43 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 15:44:56 HATA odeme-servisi İşlem tamamlanamadı
+2024-01-02 15:51:09 UYARI veri-aktarim Yanıt süresi uzadı
+2024-01-02 15:58:22 HATA odeme-servisi İşlem tamamlanamadı
+2024-01-02 15:05:35 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 15:12:48 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 15:19:01 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 15:26:14 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 15:33:27 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 16:40:40 UYARI bildirim Yanıt süresi uzadı
+2024-01-02 16:47:53 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 16:54:06 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 16:01:19 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 16:08:32 BILGI bildirim İşlem tamamlandı
+2024-01-02 16:15:45 BILGI bildirim İşlem tamamlandı
+2024-01-02 16:22:58 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 16:29:11 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 16:36:24 BILGI bildirim İşlem tamamlandı
+2024-01-02 16:43:37 UYARI kart-okuyucu Yanıt süresi uzadı
+2024-01-02 17:50:50 HATA bildirim İşlem tamamlanamadı
+2024-01-02 17:57:03 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 17:04:16 BILGI bildirim İşlem tamamlandı
+2024-01-02 17:11:29 HATA odeme-servisi İşlem tamamlanamadı
+2024-01-02 17:18:42 UYARI bildirim Yanıt süresi uzadı
+2024-01-02 17:25:55 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 17:32:08 BILGI bildirim İşlem tamamlandı
+2024-01-02 17:39:21 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 17:46:34 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 17:53:47 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 18:00:00 BILGI bildirim İşlem tamamlandı
+2024-01-02 18:07:13 UYARI veri-aktarim Yanıt süresi uzadı
+2024-01-02 18:14:26 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 18:21:39 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 18:28:52 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 18:35:05 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 18:42:18 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 18:49:31 BILGI bildirim İşlem tamamlandı
+2024-01-02 18:56:44 HATA kart-okuyucu İşlem tamamlanamadı
+2024-01-02 18:03:57 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 19:10:10 UYARI veri-aktarim Yanıt süresi uzadı
+2024-01-02 19:17:23 HATA veri-aktarim İşlem tamamlanamadı
+2024-01-02 19:24:36 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 19:31:49 BILGI bildirim İşlem tamamlandı
+2024-01-02 19:38:02 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 19:45:15 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 19:52:28 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 19:59:41 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 19:06:54 UYARI odeme-servisi Yanıt süresi uzadı
+2024-01-02 19:13:07 UYARI veri-aktarim Yanıt süresi uzadı
+2024-01-02 20:20:20 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 20:27:33 BILGI bildirim İşlem tamamlandı
+2024-01-02 20:34:46 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 20:41:59 BILGI bildirim İşlem tamamlandı
+2024-01-02 20:48:12 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 20:55:25 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 20:02:38 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 20:09:51 BILGI bildirim İşlem tamamlandı
+2024-01-02 20:16:04 BILGI bildirim İşlem tamamlandı
+2024-01-02 20:23:17 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 21:30:30 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 21:37:43 HATA hat-planlama İşlem tamamlanamadı
+2024-01-02 21:44:56 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 21:51:09 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 21:58:22 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 21:05:35 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 21:12:48 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 21:19:01 HATA bildirim İşlem tamamlanamadı
+2024-01-02 21:26:14 HATA hat-planlama İşlem tamamlanamadı
+2024-01-02 21:33:27 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 22:40:40 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 22:47:53 BILGI bildirim İşlem tamamlandı
+2024-01-02 22:54:06 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 22:01:19 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 22:08:32 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 22:15:45 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 22:22:58 BILGI bildirim İşlem tamamlandı
+2024-01-02 22:29:11 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 22:36:24 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 22:43:37 UYARI bildirim Yanıt süresi uzadı
+2024-01-02 23:50:50 BILGI bildirim İşlem tamamlandı
+2024-01-02 23:57:03 UYARI veri-aktarim Yanıt süresi uzadı
+2024-01-02 23:04:16 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 23:11:29 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 23:18:42 BILGI kart-okuyucu İşlem tamamlandı
+2024-01-02 23:25:55 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 23:32:08 BILGI odeme-servisi İşlem tamamlandı
+2024-01-02 23:39:21 BILGI veri-aktarim İşlem tamamlandı
+2024-01-02 23:46:34 BILGI hat-planlama İşlem tamamlandı
+2024-01-02 23:53:47 BILGI hat-planlama İşlem tamamlandı
