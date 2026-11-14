@@ -1,6 +1,6 @@
 {
   "name": "İstanbul Mobilite Veri Platformu",
-  "image": "ghcr.io/veri-muhendisligi-bootcamp/lab-ortami@sha256:dd41196b6a3db0f72f1055528f3a91d21e8d8b92b99972a761fcb41d99d7fa97",
+  "image": "ghcr.io/veri-muhendisligi-bootcamp/lab-ortami@sha256:ad422b3ac7009b300b2f5c8120cfcf05b481d7432021289e40f02cf360dd9df9",
   "hostRequirements": {
     "cpus": 2,
     "memory": "8gb",
