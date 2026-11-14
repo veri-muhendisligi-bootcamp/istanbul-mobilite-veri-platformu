@@ -25,6 +25,8 @@ Lab, GitHub Codespaces üzerinde tarayıcıda çalışır ve bilgisayarınıza k
 | `make veri` | Lab veri setlerini indirir ve doğrular |
 | `make kontrol` | Ortamı adım adım sınar ve hazırlık kodunu üretir |
 | `make oz-degerlendirme` | Ön koşul öz değerlendirmesini çalıştırır |
+| `make oturum N=01` | Oturumun başlangıç dosyalarını depoya ekler, var olan dosyalara dokunmaz |
+| `make odev-kontrol N=01` | Oturumlar arası görevi sınar ve kanıt kodunu yazar |
 
 Codespace her açıldığında PostgreSQL ve Polaris kendiliğinden başlar. Kafka belleği ilgili oturumlarda kullandığı için kendiliğinden açılmaz; `make kafka-baslat` komutu onu ayrıca başlatır.
 
