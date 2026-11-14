@@ -18,7 +18,7 @@ Bu dosya Oturum 1'in uygulamalarını tarif eder. Her uygulamada ilk deneme anla
 - Ocak 2024 dosyasını `lake.bronze.toplu_ulasim` adlı bir Iceberg tablosuna yüklüyorsunuz. Şubat dosyası aynı tabloya çözüm bölümünde eklenir.
 - Başlangıç kodu `oturumlar/01/u1_2_bronze.sql` dosyasındadır.
 - Partition dönüşümünü (ay, gün ya da ulaşım türü) siz seçiyorsunuz.
-- Uygulamanın sonunda tablonun iki snapshot'ı olur. Her kaynak dosyanın satır sayısı tabloda aynen yer alır ve her satır `_kaynak_dosya` ile `_yukleme_zamani` kolonlarını taşır.
+- Deneme bittiğinde tablonun bir snapshot'ı olur; Şubat yüklemesinden sonra snapshot sayısı ikiye çıkar. Her kaynak dosyanın satır sayısı tabloda aynen yer alır ve her satır `_kaynak_dosya` ile `_yukleme_zamani` kolonlarını taşır.
 - Partition seçiminizi, satır sayısını ve snapshot sayısını Zoom sohbetine yazıyorsunuz.
 - Erken bitirenler `iceberg_metadata` ile partition seçiminin veri dosyası sayısına etkisini inceler.
 
