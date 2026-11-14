@@ -14,6 +14,7 @@ case "${OLAY:-}" in
       veri) isler=(veri test) ;;
       imaj) isler=(imaj test) ;;
       teshis) isler=(teshis) ;;
+      paket:*) isler=(paket); export PAKET_NO="${IS#paket:}" ;;
       *) isler=(test) ;;
     esac ;;
   push)

@@ -8,7 +8,7 @@ export SPARK_CONF_DIR := $(LAB_KOK)/.lab/spark
 LAB_PY := $(firstword $(wildcard /opt/lab/venv/bin/python) python3)
 LAB_PYSPARK := $(firstword $(wildcard /opt/lab/venv/bin/pyspark) pyspark)
 
-.PHONY: yardim ilk-kurulum baslat durdur durum sql spark kafka-baslat kafka-durdur veri kontrol oz-degerlendirme
+.PHONY: yardim ilk-kurulum baslat durdur durum sql spark kafka-baslat kafka-durdur veri kontrol oz-degerlendirme oturum odev-kontrol
 
 yardim:
 	@echo "make baslat            PostgreSQL ve Polaris'i başlatır"
@@ -21,6 +21,8 @@ yardim:
 	@echo "make veri              Lab veri setlerini indirir ve doğrular"
 	@echo "make kontrol           Ortamı adım adım sınar ve hazırlık kodunu üretir"
 	@echo "make oz-degerlendirme  Ön koşul öz değerlendirmesini çalıştırır"
+	@echo "make oturum N=01       Oturumun başlangıç dosyalarını depoya ekler"
+	@echo "make odev-kontrol N=01 Oturumdan sonraki görevi sınar ve kanıt kodunu yazar"
 
 ilk-kurulum:
 	@bash lab/servis.sh ilk-kurulum
@@ -54,3 +56,9 @@ kontrol:
 
 oz-degerlendirme:
 	@$(LAB_PY) on-hazirlik/oz_degerlendirme.py
+
+oturum:
+	@$(LAB_PY) lab/paket.py oturum $(N)
+
+odev-kontrol:
+	@$(LAB_PY) lab/paket.py odev-kontrol $(N)
