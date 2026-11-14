@@ -4,6 +4,9 @@ SHELL := /bin/bash
 LAB_KOK := $(CURDIR)
 export LAB_KOK
 export SPARK_CONF_DIR := $(LAB_KOK)/.lab/spark
+# Giriş kabuğu PATH'i değiştirse de lab Python'u kullanılır.
+LAB_PY := $(firstword $(wildcard /opt/lab/venv/bin/python) python3)
+LAB_PYSPARK := $(firstword $(wildcard /opt/lab/venv/bin/pyspark) pyspark)
 
 .PHONY: yardim ilk-kurulum baslat durdur durum sql spark kafka-baslat kafka-durdur veri kontrol oz-degerlendirme
 
@@ -35,7 +38,7 @@ sql: baslat
 	@duckdb -no-agent -init .lab/baglan.sql .lab/calisma.duckdb
 
 spark: baslat
-	@pyspark
+	@$(LAB_PYSPARK)
 
 kafka-baslat:
 	@bash lab/servis.sh kafka-baslat
@@ -44,10 +47,10 @@ kafka-durdur:
 	@bash lab/servis.sh kafka-durdur
 
 veri:
-	@python3 lab/veri_indir.py
+	@$(LAB_PY) lab/veri_indir.py
 
 kontrol:
-	@python3 lab/kontrol.py
+	@$(LAB_PY) lab/kontrol.py
 
 oz-degerlendirme:
-	@python3 on-hazirlik/oz_degerlendirme.py
+	@$(LAB_PY) on-hazirlik/oz_degerlendirme.py

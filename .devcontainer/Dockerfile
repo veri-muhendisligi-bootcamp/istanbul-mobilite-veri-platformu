@@ -85,7 +85,8 @@ RUN uv venv /opt/lab/dbt --python python3.13 \
  && ln -s /opt/lab/dbt-core/bin/dbt /usr/local/bin/dbt-core
 
 # Lab komutları her kabukta bulunsun diye yol tanımı oturum açılışına da yazılır
-RUN printf 'export PATH=/opt/lab/venv/bin:/opt/lab/kafka/bin:/usr/lib/postgresql/17/bin:$PATH\n' > /etc/profile.d/00-lab.sh
+# Taban imajın 00-restore-env.sh betiği PATH'i giriş kabuklarında yeniden yazar; lab betiği adıyla ondan sonra çalışır.
+RUN printf 'export PATH=/opt/lab/venv/bin:/opt/lab/kafka/bin:/usr/lib/postgresql/17/bin:$PATH\n' > /etc/profile.d/zz-lab.sh
 
 USER vscode
 

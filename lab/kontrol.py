@@ -78,7 +78,7 @@ def adim_iceberg():
     baglanti.execute("INSERT INTO lake.kontrol.deneme VALUES ('M2', 120), ('34', 80)")
     baglanti.execute("INSERT INTO lake.kontrol.deneme VALUES ('T1', 40)")
     satir = baglanti.execute("SELECT count(*), sum(yolculuk) FROM lake.kontrol.deneme").fetchall()[0]
-    snapshot = baglanti.execute("SELECT count(*) FROM iceberg_snapshots(lake.kontrol.deneme)").fetchall()[0][0]
+    snapshot = baglanti.execute("SELECT count(*) FROM iceberg_snapshots('lake.kontrol.deneme')").fetchall()[0][0]
     return satir == (3, 240) and snapshot == 2, f"3 satır yazıldı ve okundu, {snapshot} snapshot oluştu"
 
 
