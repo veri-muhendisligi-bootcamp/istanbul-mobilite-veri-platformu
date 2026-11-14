@@ -1,9 +1,6 @@
 {
   "name": "İstanbul Mobilite Veri Platformu",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": ".."
-  },
+  "image": "ghcr.io/veri-muhendisligi-bootcamp/lab-ortami@sha256:dd41196b6a3db0f72f1055528f3a91d21e8d8b92b99972a761fcb41d99d7fa97",
   "hostRequirements": {
     "cpus": 2,
     "memory": "8gb",
@@ -20,11 +17,23 @@
   },
   "postCreateCommand": "bash lab/servis.sh ilk-kurulum",
   "postStartCommand": "bash lab/servis.sh baslat",
-  "forwardPorts": [8181, 4040],
+  "forwardPorts": [
+    8181,
+    4040
+  ],
   "portsAttributes": {
-    "8181": { "label": "Polaris REST kataloğu", "onAutoForward": "silent" },
-    "4040": { "label": "Spark arayüzü", "onAutoForward": "notify" },
-    "8080": { "label": "Airflow arayüzü", "onAutoForward": "notify" }
+    "8181": {
+      "label": "Polaris REST kataloğu",
+      "onAutoForward": "silent"
+    },
+    "4040": {
+      "label": "Spark arayüzü",
+      "onAutoForward": "notify"
+    },
+    "8080": {
+      "label": "Airflow arayüzü",
+      "onAutoForward": "notify"
+    }
   },
   "customizations": {
     "vscode": {
@@ -34,7 +43,9 @@
       "settings": {
         "python.defaultInterpreterPath": "/opt/lab/venv/bin/python",
         "terminal.integrated.defaultProfile.linux": "bash",
-        "files.exclude": { "**/.lab": true },
+        "files.exclude": {
+          "**/.lab": true
+        },
         "editor.renderWhitespace": "boundary"
       }
     },
