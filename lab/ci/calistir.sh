@@ -13,6 +13,7 @@ case "${OLAY:-}" in
     case "${IS:-test}" in
       veri) isler=(veri test) ;;
       imaj) isler=(imaj test) ;;
+      teshis) isler=(teshis) ;;
       *) isler=(test) ;;
     esac ;;
   push)

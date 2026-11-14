@@ -8,7 +8,7 @@ if [ ! -f lab/veri_listesi.json ]; then
 fi
 
 npm install --silent -g @devcontainers/cli@0.90.0
-echo "${GH_TOKEN}" | docker login ghcr.io -u "${AKTOR}" --password-stdin >/dev/null
+echo "${GH_TOKEN}" | docker login ghcr.io -u "${SAHIP}" --password-stdin >/dev/null
 
 # Özel depoda sürüm ekleri herkese açık adresten inmez; dosyalar gh ile önceden indirilir.
 # make veri bu durumda yalnızca sağlama toplamlarını doğrular.

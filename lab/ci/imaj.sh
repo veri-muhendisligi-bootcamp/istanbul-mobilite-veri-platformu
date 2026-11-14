@@ -8,7 +8,7 @@ IMAJ="ghcr.io/${SAHIP}/lab-ortami"
 ETIKET_ADI="${ETIKET:-imaj-elle}"
 case "${ETIKET_ADI}" in imaj-v*) ;; *) ETIKET_ADI="imaj-$(git rev-parse --short HEAD)" ;; esac
 
-echo "${GH_TOKEN}" | docker login ghcr.io -u "${AKTOR}" --password-stdin >/dev/null
+echo "${GH_TOKEN}" | docker login ghcr.io -u "${SAHIP}" --password-stdin >/dev/null
 docker build -f .devcontainer/Dockerfile \
   --label "org.opencontainers.image.source=https://github.com/${DEPO}" \
   --label "org.opencontainers.image.description=İstanbul Mobilite Veri Platformu lab ortamı" \
