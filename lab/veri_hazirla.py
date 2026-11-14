@@ -1,10 +1,11 @@
 """Lab veri setlerini İBB Açık Veri Portalı'ndan hazırlar.
 
 Yalnızca eğitmenin çalıştırdığı "Veri hazırla" iş akışında çalışır; katılımcı bu betiği kullanmaz.
-Adımlar:
-  1. CKAN API'sinden veri setlerinin kaynak listesini alır.
-  2. Seçilen ayların CSV dosyalarını indirir ve her dosyanın profilini çıkarır.
-  3. Dosyaları gzip ile sıkıştırır, sağlama toplamlarını lab/veri_listesi.json dosyasına yazar.
+İki kaynaktan çalışır:
+  - HAM_DIZIN tanımlı değilse CKAN API'sinden kaynak listesini alır ve seçilen ayların CSV dosyalarını indirir.
+  - HAM_DIZIN tanımlıysa portaldan elle indirilmiş dosyaları (csv ya da csv.gz) o klasörden okur. Dosyanın hangi
+    veri setine ve hangi aya ait olduğunu adından değil, kolonlarından ve tarih kolonundaki değerlerden çıkarır.
+Her dosyanın profilini çıkarır, dosyaları gzip ile sıkıştırır ve sağlama toplamlarını lab/veri_listesi.json dosyasına yazar.
 """
 import gzip
 import hashlib
@@ -30,8 +31,8 @@ TOHUM = os.environ.get("KUSUR_TOHUMU") or "lab-2026"
 
 AYLAR = ["ocak", "şubat", "mart", "nisan", "mayıs", "haziran", "temmuz", "ağustos", "eylül", "ekim", "kasım", "aralık"]
 SECIM = {
-    "hourly-public-transport-data-set": {"kisa": "toplu_ulasim", "yil": "2024", "aylar": [1, 2, 3], "kusur": True},
-    "hourly-traffic-density-data-set": {"kisa": "trafik", "yil": "2024", "aylar": list(range(1, 13)), "kusur": False},
+    "hourly-public-transport-data-set": {"baslik": "Saatlik Toplu Ulaşım Veri Seti", "kisa": "toplu_ulasim", "yil": "2024", "aylar": [1, 2, 3], "kusur": True},
+    "hourly-traffic-density-data-set": {"baslik": "Saatlik Trafik Yoğunluk Veri Seti", "kisa": "trafik", "yil": "2024", "aylar": list(range(1, 13)), "kusur": False},
 }
 
 
@@ -121,12 +122,79 @@ def ozet(yol):
     return h.hexdigest()
 
 
+TARIH_KOLONU = {"toplu_ulasim": "transition_date", "trafik": "date_time"}
+
+
+def tur_bul(kolonlar):
+    kucuk_kolonlar = {k.lower() for k in kolonlar}
+    if {"transition_date", "number_of_passenger"} <= kucuk_kolonlar:
+        return "toplu_ulasim"
+    if "geohash" in kucuk_kolonlar and "date_time" in kucuk_kolonlar:
+        return "trafik"
+    return None
+
+
+def donem_bul(baglanti, yol, tarih_kolonu):
+    """Tarih kolonundaki en sık yıl-ay değerini döndürür; dosya adındaki tarihe güvenmez."""
+    satir = baglanti.execute(f"""
+        WITH t AS (
+            SELECT coalesce(
+                try_strptime(substr(trim(k), 1, 19), ['%Y-%m-%d %H:%M:%S', '%Y-%m-%dT%H:%M:%S', '%d.%m.%Y %H:%M:%S']),
+                try_strptime(substr(trim(k), 1, 10), ['%Y-%m-%d', '%d.%m.%Y', '%d/%m/%Y'])) AS z
+            FROM (SELECT "{tarih_kolonu}" AS k FROM read_csv('{yol}', all_varchar = true, header = true))
+        )
+        SELECT year(z), month(z), count(*) FROM t WHERE z IS NOT NULL GROUP BY ALL ORDER BY 3 DESC LIMIT 1
+    """).fetchall()
+    return (str(satir[0][0]), int(satir[0][1])) if satir else (None, None)
+
+
+def yerel_kaynaklar(baglanti, dizin):
+    """HAM_DIZIN klasöründeki dosyaları veri setine ve aya göre eşler."""
+    bulunan = {}
+    for yol in sorted(Path(dizin).rglob("*")):
+        if not yol.is_file() or not (yol.name.lower().endswith(".csv") or yol.name.lower().endswith(".csv.gz")):
+            continue
+        kolonlar = baglanti.execute(f"SELECT * FROM read_csv('{yol}', all_varchar = true, header = true) LIMIT 0").description
+        tur = tur_bul([k[0] for k in kolonlar])
+        if tur is None:
+            print(f"  tanınmayan dosya atlandı: {yol.name}")
+            continue
+        tarih_kolonu = next(k[0] for k in kolonlar if k[0].lower() == TARIH_KOLONU[tur])
+        yil, ay = donem_bul(baglanti, str(yol), tarih_kolonu)
+        print(f"  {yol.name}: {tur} {yil}-{ay:02d}" if ay else f"  {yol.name}: {tur}, tarih bulunamadı")
+        bulunan[(tur, yil, ay)] = yol
+    return bulunan
+
+
 def main():
     CIKTI.mkdir(exist_ok=True)
     GECICI.mkdir(exist_ok=True)
-    baglanti = duckdb.connect()
+    # Aylık toplu ulaşım dosyası 1,5 GB'ı aşıyor; tablo belleğe sığmayabileceği için diskte duran bir veritabanı kullanılır.
+    baglanti = duckdb.connect(str(GECICI / "hazirlik.duckdb"))
     dosyalar, profiller = [], {}
-    for paket, ayar in SECIM.items():
+    ham_dizin = os.environ.get("HAM_DIZIN")
+    if ham_dizin:
+        yerel = yerel_kaynaklar(baglanti, ham_dizin)
+        for paket, ayar in SECIM.items():
+            for ay in ayar["aylar"]:
+                yol = yerel.get((ayar["kisa"], ayar["yil"], ay))
+                ad = f"{ayar['kisa']}_{ayar['yil']}_{ay:02d}.csv.gz"
+                if yol is None:
+                    print(f"  eksik: {ad}")
+                    continue
+                bilgi = profil(baglanti, str(yol))
+                bilgi.update({"kaynak_dosya_adi": yol.name, "kaynak": "elle indirilen portal dosyası"})
+                profiller[ad] = bilgi
+                if ayar["kusur"]:
+                    kusur_yerlestir(baglanti, str(yol), str(CIKTI / ad), bilgi["ayirici"])
+                elif yol.name.lower().endswith(".gz"):
+                    shutil.copyfile(yol, CIKTI / ad)
+                else:
+                    sikistir(yol, CIKTI / ad)
+                cikti = CIKTI / ad
+                dosyalar.append({"ad": ad, "sha256": ozet(cikti), "boyut": cikti.stat().st_size,
+                                 "kaynak": ayar["baslik"], "lisans": "İBB Açık Veri Lisansı"})
+    for paket, ayar in ({} if ham_dizin else SECIM).items():
         kaynaklar = api("package_show", id=paket)["resources"]
         print(f"{paket}: {len(kaynaklar)} kaynak")
         for kaynak in kaynaklar:
