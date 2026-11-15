@@ -4,8 +4,8 @@ Kullanım:
   make oturum N=01         Oturum 1'in başlangıç dosyalarını depoya ekler
   make odev-kontrol N=01   Oturum 1'den sonraki görevi sınar ve kanıt kodunu yazar
 
-Paketler şablon deponun sürüm eklerinde durur. Paket, depoda zaten bulunan bir dosyanın üzerine yazmaz;
-böylece katılımcının kendi çalışması korunur.
+Paketler şablon deponun paketler dalında ve sürüm eklerinde durur. Paket, depoda zaten bulunan bir dosyanın
+üzerine yazmaz; böylece katılımcının kendi çalışması korunur.
 """
 import io
 import os
@@ -27,12 +27,18 @@ def numara(deger):
 
 
 def oturum(no):
-    adres = f"https://github.com/{SABLON}/releases/download/oturum-{no}/oturum-{no}.zip"
-    print(f"Oturum {int(no)} paketi indiriliyor: {adres}")
-    try:
-        with urllib.request.urlopen(adres, timeout=60) as yanit:
-            veri = yanit.read()
-    except Exception as hata:
+    adresler = [f"https://github.com/{SABLON}/raw/paketler/oturum-{no}.zip",
+                f"https://github.com/{SABLON}/releases/download/oturum-{no}/oturum-{no}.zip"]
+    veri, hata = None, None
+    for adres in adresler:
+        print(f"Oturum {int(no)} paketi indiriliyor: {adres}")
+        try:
+            with urllib.request.urlopen(adres, timeout=60) as yanit:
+                veri = yanit.read()
+            break
+        except Exception as son_hata:
+            hata = son_hata
+    if veri is None:
         print(f"Paket indirilemedi ({hata}). Paket oturum günü yayımlanır; yayımlandıysa komut yeniden çalıştırılır.")
         sys.exit(1)
     eklenen, korunan = [], []
