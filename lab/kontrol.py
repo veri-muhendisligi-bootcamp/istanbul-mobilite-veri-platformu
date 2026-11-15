@@ -1,8 +1,7 @@
-"""Lab ortamını adım adım sınar ve hazırlık kodunu üretir.
+"""Lab ortamını on iki adımda sınar.
 
 Kullanım: make kontrol
-Her adım TAMAM ya da HATA sonucu verir. Bütün adımlar TAMAM olduğunda betik altı haneli bir hazırlık kodu yazar;
-bu kod Tech İstanbul platformuna yüklenir.
+Her adım TAMAM ya da HATA sonucu verir. Betik en altta TAMAM veren adımların sayısını 12/12 biçiminde yazar.
 """
 import hashlib
 import json
@@ -229,7 +228,7 @@ def temizle():
 
 
 def main():
-    print("Lab ortamı sınanıyor. Bütün adımlar 2-3 dakika sürer.\n")
+    print(f"Lab ortamı {len(ADIMLAR)} adımda sınanıyor.\n")
     sonuclar = []
     for sira, (ad, islev) in enumerate(ADIMLAR, 1):
         print(f"{sira:2d}. {ad} ...", end=" ", flush=True)
@@ -246,15 +245,13 @@ def main():
     for ad, tamam, ayrinti in sonuclar:
         print(f"  {ad:<{genislik}}  {'TAMAM' if tamam else 'HATA ':5}  {ayrinti}")
     print()
-    if all(tamam for _, tamam, _ in sonuclar):
-        kullanici = os.environ.get("GITHUB_USER") or calistir(["git", "config", "user.name"])[1].strip() or "bilinmiyor"
-        kod = hashlib.sha256(f"hazirlik-v1|{kullanici}".encode()).hexdigest()[:6].upper()
-        print(f"Ortam hazır. Hazırlık kodu: {kod} (GitHub kullanıcısı: {kullanici})")
-        print("Bu satırın ekran görüntüsü ve kod, Tech İstanbul platformundaki ön hazırlık görevine yüklenir.")
+    tamam_sayisi = sum(1 for _, tamam, _ in sonuclar if tamam)
+    if tamam_sayisi == len(sonuclar):
+        print(f"Ortam hazır: {tamam_sayisi}/{len(sonuclar)} adım TAMAM.")
         sys.exit(0)
     hatalilar = [ad for ad, tamam, _ in sonuclar if not tamam]
-    print(f"Ortam hazır değil. Hatalı adımlar: {', '.join(hatalilar)}")
-    print("Ön hazırlık rehberinin \"Sorun giderme\" bölümü her adımın çözümünü anlatıyor.")
+    print(f"Ortam hazır değil: {tamam_sayisi}/{len(sonuclar)} adım TAMAM. Hatalı adımlar: {', '.join(hatalilar)}")
+    print("Çözümler README.md dosyasının \"Sorun giderme\" bölümünde yer alır.")
     sys.exit(1)
 
 
