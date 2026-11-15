@@ -11,7 +11,7 @@ Bu dosya Oturum 1'in uygulamalarını tarif eder. Her uygulamada ilk deneme anla
 - Aday anahtarın kolonlarına ve işaretlenecek anomaliye siz karar veriyorsunuz.
 - Uygulamanın sonunda aday anahtarın kolon listesi, bu anahtarla tekrar eden satır sayısı, bir anomali ve onu gösteren sorgu elinizde olur.
 - Aday anahtar kolonlarını ve bulduğunuz anomaliyi Zoom sohbetine yazıyorsunuz.
-- Erken bitirenler `product_kind` ve `transfer_type` kolonlarındaki beklenmeyen değerleri inceler.
+- Erken bitirenler `product_kind` ile `transaction_type_desc` kolonları arasındaki çelişkileri inceler.
 
 ## U1.2 Bronze katmanı (25 dakika)
 
