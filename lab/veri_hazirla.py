@@ -116,7 +116,9 @@ def kusur_yerlestir(baglanti, yol, cikti, ayirici):
 
 
 def sikistir(yol, cikti):
-    with yol.open("rb") as giris, gzip.open(cikti, "wb", compresslevel=6) as cikis:
+    # mtime=0: aynı girdi her çalışmada aynı baytları ve aynı sağlama toplamını üretir.
+    with yol.open("rb") as giris, open(cikti, "wb") as ham_cikis, \
+            gzip.GzipFile(filename="", mode="wb", compresslevel=6, fileobj=ham_cikis, mtime=0) as cikis:
         shutil.copyfileobj(giris, cikis, length=1 << 22)
 
 
