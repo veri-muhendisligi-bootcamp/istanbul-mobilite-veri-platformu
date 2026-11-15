@@ -103,6 +103,7 @@ Kullanım miktarı github.com/settings/billing sayfasında görünür.
 | `make kontrol`: Veri dosyaları HATA | `make veri` eksik ya da bozuk dosyayı yeniden indirir. |
 | `make kontrol`: Kafka HATA | `make kafka-durdur` komutundan sonra `make kontrol` yeniden çalıştırılır. Betik Kafka'yı gerektiğinde kendisi başlatır ve sınamadan sonra durdurur. |
 | `make kontrol`: Bellek ve disk HATA | Codespace 2 çekirdekli ve 8 GB bellekli makinede çalışmıyor olabilir. github.com/codespaces sayfasındaki "..." menüsünde "Change machine type" seçeneği makineyi değiştirir. |
+| DuckDB sorgusu `Terminated` yazıp kapanıyor | Codespace'in belleği dolmuştur. VS Code, Codespace'in açık olduğu her sekme için yaklaşık 1 GB'lık ayrı süreçler çalıştırır. Codespace github.com/codespaces sayfasındaki "..." menüsünden "Stop codespace" ile durdurulur, tek sekmede yeniden açılır ve sorgu yeniden çalıştırılır. |
 | Codespace kendiliğinden durdu | 10 dakikalık bekleme süresi doldu. Codespace github.com/codespaces sayfasından yeniden açılır ve servisler kendiliğinden başlar. |
 | Codespaces kotası doldu | Kota yeni fatura döneminde yenilenir. Bu sürede oturumlar eğitmen ekranından izlenir ve uygulamalar sonra tamamlanır. |
 

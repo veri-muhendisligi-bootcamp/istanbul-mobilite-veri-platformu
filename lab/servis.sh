@@ -2,7 +2,7 @@
 # Lab servislerini kurar, başlatır, durdurur ve durumlarını gösterir.
 # Kullanım: bash lab/servis.sh <komut>
 #   ilk-kurulum     PostgreSQL kümesini, Polaris kataloğunu ve bağlantı dosyalarını hazırlar (bir kez çalışır)
-#   baslat          PostgreSQL ve Polaris'i başlatır
+#   baslat          Bağlantı dosyalarını yeniden yazar, PostgreSQL ve Polaris'i başlatır
 #   durdur          Çalışan bütün lab servislerini durdurur
 #   durum           Servislerin durumunu gösterir
 #   kafka-baslat    Kafka'yı (KRaft, tek düğüm) başlatır
@@ -165,8 +165,10 @@ kafka_durdur() {
 
 baglanti_dosyalari_yaz() {
     cat > "${DURUM}/baglan.sql" <<EOF
--- Lab bağlantısı: DuckDB'yi Polaris kataloğuna bağlar. Bu dosya ilk kurulumda üretilir ve depoya girmez.
+-- Lab bağlantısı: DuckDB'yi Polaris kataloğuna bağlar. Bu dosya Codespace her başladığında yeniden yazılır ve depoya girmez.
 SET autoinstall_known_extensions = false;
+-- Bellek sınırı: sınırı aşan sorgu diske taşar. Sınır olmadan büyük bir GROUP BY ya da DISTINCT Codespace belleğini doldurur.
+SET memory_limit = '2GB';
 LOAD httpfs;
 LOAD iceberg;
 CREATE OR REPLACE SECRET polaris_gizli (
@@ -250,6 +252,7 @@ baslat() {
         return
     fi
     ortam_yukle
+    baglanti_dosyalari_yaz
     postgres_baslat
     polaris_baslat
 }
