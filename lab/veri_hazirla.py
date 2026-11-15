@@ -101,10 +101,16 @@ def kusur_yerlestir(baglanti, yol, cikti, ayirici):
     baglanti.execute(f"UPDATE ham SET number_of_passenger = NULL WHERE {secim} % 2000 = 7")
     baglanti.execute(f"""UPDATE ham SET town = bozuk_kodlama(town), line_name = bozuk_kodlama(line_name)
                          WHERE {secim} % 500 = 11 AND regexp_matches(coalesce(town, '') || coalesce(line_name, ''), '[çğıöşüÇĞİÖŞÜ]')""")
-    baglanti.execute(f"INSERT INTO ham SELECT * FROM ham WHERE {secim} % 1000 = 3")
-    kolonlar = [k for k in baglanti.execute("SELECT * FROM ham LIMIT 0").description if k[0] != "_sira"]
+    # Tekrar gönderilen gün: ayın 10'undan sonraki ilk çarşambanın bütün satırları dosyanın sonuna bir kez daha eklenir.
+    # Kaynakta aynı değerleri taşıyan satırlar doğal olarak bulunduğu için tekrar satır düzeyinde değil, gün düzeyinde kurulur.
+    baglanti.execute("ALTER TABLE ham ADD COLUMN _kopya INTEGER DEFAULT 0")
+    baglanti.execute("""INSERT INTO ham SELECT * REPLACE (1 AS _kopya) FROM ham
+                        WHERE try_cast(transition_date AS DATE) = (
+                            SELECT min(g) FROM (SELECT DISTINCT try_cast(transition_date AS DATE) AS g FROM ham)
+                            WHERE day(g) >= 10 AND dayofweek(g) = 3)""")
+    kolonlar = [k for k in baglanti.execute("SELECT * FROM ham LIMIT 0").description if k[0] not in ("_sira", "_kopya")]
     secilen = ", ".join(f'"{k[0]}"' for k in kolonlar)
-    baglanti.execute(f"COPY (SELECT {secilen} FROM ham ORDER BY _sira) TO '{cikti}' "
+    baglanti.execute(f"COPY (SELECT {secilen} FROM ham ORDER BY _kopya, _sira) TO '{cikti}' "
                      f"(HEADER, DELIMITER '{ayirici}', QUOTE '\"', COMPRESSION gzip)")
     baglanti.execute("DROP TABLE ham")
 
