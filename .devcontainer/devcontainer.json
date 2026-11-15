@@ -42,6 +42,8 @@
       ],
       "settings": {
         "python.defaultInterpreterPath": "/opt/lab/venv/bin/python",
+        "python-envs.terminal.autoActivationType": "off",
+        "python.terminal.activateEnvironment": false,
         "terminal.integrated.defaultProfile.linux": "bash",
         "files.exclude": {
           "**/.lab": true
