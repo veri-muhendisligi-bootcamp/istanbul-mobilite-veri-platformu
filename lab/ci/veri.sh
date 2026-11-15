@@ -48,3 +48,7 @@ fi
 ls -l veri_hazir
 
 main_dalina_isle "Veri listesi: ${SURUM}" lab/veri_listesi.json
+
+# Aynı çalışmada test işi devcontainer imajını ve veriyi indirir; ara dosyalar disk açmak için silinir.
+rm -rf "${GIRDI}" veri_ham veri_hazir
+df -h . | tail -1

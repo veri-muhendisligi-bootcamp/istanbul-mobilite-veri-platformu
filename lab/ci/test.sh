@@ -8,6 +8,13 @@ if [ ! -f lab/veri_listesi.json ]; then
   exit 0
 fi
 
+# Barındırılan çalıştırıcının diski 8,5 GB'lık imaj ve lab verisi için dardır; kullanılmayan araç zincirleri silinir.
+# Codespaces'te bu adım çalışmaz.
+if [ "${GITHUB_ACTIONS:-}" = "true" ]; then
+  sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL 2>/dev/null || true
+  df -h / | tail -1
+fi
+
 npm install --silent -g @devcontainers/cli@0.90.0
 echo "${GH_TOKEN}" | docker login ghcr.io -u "${SAHIP}" --password-stdin >/dev/null
 
