@@ -1,0 +1,111 @@
+{
+  "surum": "veri-v1",
+  "taban_adres": "https://github.com/veri-muhendisligi-bootcamp/istanbul-mobilite-veri-platformu/releases/download/veri-v1",
+  "dosyalar": [
+    {
+      "ad": "toplu_ulasim_2024_01.csv.gz",
+      "sha256": "1290fc08cea8d2692ae3b0ed3be17cad740d88a420d4fda313f94a3af18d8a24",
+      "boyut": 207787740,
+      "kaynak": "Saatlik Toplu Ulaşım Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "toplu_ulasim_2024_02.csv.gz",
+      "sha256": "dfc1feb3151ad42dbba4a92dd500defece567830dc37336b2f87a28a85f7fb55",
+      "boyut": 204551932,
+      "kaynak": "Saatlik Toplu Ulaşım Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "toplu_ulasim_2024_03.csv.gz",
+      "sha256": "ecab9c3c8c26fb2d92270caaaff2c27e8d05f501c2417d81023421f2fc8bac15",
+      "boyut": 214846718,
+      "kaynak": "Saatlik Toplu Ulaşım Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "trafik_2024_01.csv.gz",
+      "sha256": "0834bce909ec7dc723e6e0ffdb59d9784d6242e4e2584cadb25c92939d6f9c0d",
+      "boyut": 13254265,
+      "kaynak": "Saatlik Trafik Yoğunluk Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "trafik_2024_02.csv.gz",
+      "sha256": "fa93ca7de625ab9bbf1c13be0d7ea04b234a13b3ea5954e99e9cac431336d945",
+      "boyut": 21619939,
+      "kaynak": "Saatlik Trafik Yoğunluk Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "trafik_2024_03.csv.gz",
+      "sha256": "67290a4604d3920189cf7ed3c2bec367893154c313e4ea40b2076bfecf7f71e1",
+      "boyut": 23273657,
+      "kaynak": "Saatlik Trafik Yoğunluk Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "trafik_2024_04.csv.gz",
+      "sha256": "fbf29e8bba8c22b236b3486c27455a76f1b0e2bca87ba43a8b55784408347a63",
+      "boyut": 21404407,
+      "kaynak": "Saatlik Trafik Yoğunluk Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "trafik_2024_05.csv.gz",
+      "sha256": "ccd8f2002cd1b22cf9dfde836c8e8783a890ac1ea4f30b7bdc236142f9039100",
+      "boyut": 22155588,
+      "kaynak": "Saatlik Trafik Yoğunluk Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "trafik_2024_06.csv.gz",
+      "sha256": "00fdc347d9fc1dc0a5723dfb5b1a41489c39945486a2f2daeb2f57407c6fef04",
+      "boyut": 20501671,
+      "kaynak": "Saatlik Trafik Yoğunluk Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "trafik_2024_07.csv.gz",
+      "sha256": "c2542887cb5f5b1a17e78b909b50bbbd6b1df722037ccca5182658c12e786378",
+      "boyut": 23658577,
+      "kaynak": "Saatlik Trafik Yoğunluk Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "trafik_2024_08.csv.gz",
+      "sha256": "61c419f63c24156b28bd8fa3cc8080e01a2e911274ea78a07ea1674d7b1108dd",
+      "boyut": 22831664,
+      "kaynak": "Saatlik Trafik Yoğunluk Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "trafik_2024_09.csv.gz",
+      "sha256": "422a9d07eac77ccaa1934222242184b6bc25f55bf17c6460ecd2a8f0712424b9",
+      "boyut": 22785987,
+      "kaynak": "Saatlik Trafik Yoğunluk Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "trafik_2024_10.csv.gz",
+      "sha256": "7e7acaece0cede228a38cc224f097188c9087ec00cb4df9e2ed5fc440103c996",
+      "boyut": 23677318,
+      "kaynak": "Saatlik Trafik Yoğunluk Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "trafik_2024_11.csv.gz",
+      "sha256": "3fed608e4cd7fafcd22f69b6e0eb335d70fb7dc3b49e14a76c44df8cc76d1709",
+      "boyut": 22670270,
+      "kaynak": "Saatlik Trafik Yoğunluk Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    },
+    {
+      "ad": "trafik_2024_12.csv.gz",
+      "sha256": "9053ea820fe40c7ac8670b4188bb5f73460840f1aa5c3163d1f10c7a4a9c17dc",
+      "boyut": 16778409,
+      "kaynak": "Saatlik Trafik Yoğunluk Veri Seti",
+      "lisans": "İBB Açık Veri Lisansı"
+    }
+  ]
+}
