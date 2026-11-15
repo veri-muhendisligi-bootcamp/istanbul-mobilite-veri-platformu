@@ -17,6 +17,8 @@ Bitirme projesi herkese açık bir depo olarak teslim edildiği için depo başt
 
 github.com/codespaces sayfası Codespace'lerinizi listeler. Deponuzun Codespace'inin adına tıkladığınızda Codespace tarayıcıda açılır; durmuşsa yeniden başlar. PostgreSQL ve Polaris her açılışta kendiliğinden başlar.
 
+Codespace tek sekmede açık tutulur. VS Code, Codespace'in açık olduğu her sekme için yaklaşık 1 GB bellek tutan ayrı süreçler çalıştırır; ikinci bir sekme uygulamalardaki büyük sorgulara kalan belleği azaltır.
+
 Codespace'teki değişiklikler yalnızca `git push` komutuyla GitHub'daki deponuza gider. GitHub, durdurulduktan sonra 30 gün açılmayan Codespace'i siler ve gönderilmemiş değişiklikler o Codespace'le birlikte kaybolur. Her çalışmanın sonunda değişiklikler commit edilip gönderilir.
 
 ## Komutlar
