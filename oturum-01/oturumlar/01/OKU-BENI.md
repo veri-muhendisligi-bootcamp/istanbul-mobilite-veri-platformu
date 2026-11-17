@@ -6,12 +6,21 @@ Bu dosya Oturum 1'in uygulamalarını tarif eder. Her uygulamada ilk deneme anla
 
 ## U1.1 Ham veri keşfi (20 dakika)
 
-- Ocak 2024 toplu ulaşım dosyasında bir satırı tekil kılan kolon kombinasyonunu ve bronze katmanında işaretlenecek en az bir anomaliyi arıyorsunuz.
-- Başlangıç kodu `oturumlar/01/u1_1_ham_veri_kesfi.sql` dosyasındadır.
-- Aday anahtarın kolonlarına ve işaretlenecek anomaliye siz karar veriyorsunuz.
-- Uygulamanın sonunda aday anahtarın kolon listesi, bu anahtarla tekrar eden satır sayısı, bir anomali ve onu gösteren sorgu elinizde olur.
-- Aday anahtar kolonlarını ve bulduğunuz anomaliyi Zoom sohbetine yazıyorsunuz.
-- Erken bitirenler `product_kind` ile `transaction_type_desc` kolonları arasındaki çelişkileri inceler.
+- Soru: Ocak 2024 toplu ulaşım dosyasında bir satırı hangi kolonlar tekil kılıyor?
+- `make sql` ile DuckDB'yi açıyor, `.read oturumlar/01/u1_1_ham_veri_kesfi.sql` ile başlangıç dosyasını çalıştırıyorsunuz. Dosya kolonları, satır sayısını ve ilk on satırı gösteriyor.
+- Ekrana sığmayan kolonlar `…` ile gizleniyor. `.last` komutu ilk on satırı bütün kolonlarıyla açıyor. Sağ ok tuşuyla kaydırıyor, `q` ile çıkıyorsunuz.
+- İlk on satıra bakıp bir satırı tekil kıldığını düşündüğünüz kolonları seçiyorsunuz. Tahmininizi aşağıdaki sorguyla sınıyorsunuz. `kolon_1, kolon_2` yerine kendi seçtiğiniz kolonları yazıyorsunuz:
+
+```
+SELECT count(*) FROM (
+  SELECT DISTINCT kolon_1, kolon_2
+  FROM ham_ocak);
+```
+
+- Sorguyu DuckDB'ye doğrudan yazıyorsunuz. Başlangıç dosyasını yeniden çalıştırmak tabloyu baştan kurar.
+- Sorgunun verdiği sayı satır sayısına eşitse seçtiğiniz kolonlar bir satırı tekil kılıyor. Küçükse bazı kombinasyonlar birden fazla satırda tekrar ediyor.
+- Seçtiğiniz kolonları ve sorgunun verdiği sayıyı Zoom sohbetine yazıyorsunuz.
+- Erken bitirenler bronze katmanında işaretlenmesi gereken bir anomali arıyor.
 
 ## U1.2 Bronze katmanı (25 dakika)
 

@@ -4,7 +4,9 @@ CREATE OR REPLACE TABLE ham_ocak AS
 SELECT * FROM read_csv('veri/toplu_ulasim_2024_01.csv.gz');
 
 DESCRIBE ham_ocak;
-SELECT * FROM ham_ocak LIMIT 10;
 SELECT count(*) AS satir FROM ham_ocak;
+SELECT * FROM ham_ocak LIMIT 10;
 
--- Aday anahtar ve anomali sorgularınız bu satırın altına gelir.
+-- Ekrana sığmayan kolonlar için: .last (sağ ok tuşuyla kaydırılır, q ile çıkılır)
+-- Tahmininizi sınayan sorguyu DuckDB'ye doğrudan yazın. Bu dosyayı yeniden
+-- çalıştırmak tabloyu baştan kurar.
