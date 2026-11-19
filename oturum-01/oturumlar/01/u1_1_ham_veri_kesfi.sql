@@ -8,5 +8,5 @@ SELECT count(*) AS satir FROM ham_ocak;
 SELECT * FROM ham_ocak LIMIT 10;
 
 -- Ekrana sığmayan kolonlar için: .last (sağ ok tuşuyla kaydırılır, q ile çıkılır)
--- Tahmininizi sınayan sorguyu DuckDB'ye doğrudan yazın. Bu dosyayı yeniden
+-- Uygulamanın sorguları DuckDB'ye doğrudan yazılır. Bu dosyayı yeniden
 -- çalıştırmak tabloyu baştan kurar.

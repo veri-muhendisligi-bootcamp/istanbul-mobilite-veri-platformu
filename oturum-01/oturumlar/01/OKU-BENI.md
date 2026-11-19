@@ -1,43 +1,46 @@
 # Oturum 1 | Çalışma dosyası
 
-Bu dosya Oturum 1'in uygulamalarını tarif eder. Her uygulamada ilk deneme anlatımdan önce gelir ve bloğun sonundaki çözümle karşılaştırılır.
+Bu dosya Oturum 1'in üç uygulamasını tarif eder. Her blok kısa bir soruyla başlar, ardından konu anlatılır ve uygulama gelir. Uygulamanın çözümü bloğun sonunda birlikte yapılır.
 
-`make sql` komutu DuckDB'yi lab kataloğuna bağlı olarak açar ve bütün sorgular bu oturumda çalışır. Bir SQL dosyası DuckDB içinde `.read` komutuyla çalışır; örnek: `.read oturumlar/01/u1_1_ham_veri_kesfi.sql`.
+`make sql` komutu DuckDB'yi lab kataloğuna bağlı olarak açar ve bütün sorgular bu oturumda çalışır. Bir SQL dosyası DuckDB içinde `.read` komutuyla çalışır; örnek: `.read oturumlar/01/u1_1_ham_veri_kesfi.sql`. `make sql` ve `.read` ayrı ayrı yazılır: `.read` satırı DuckDB'nin `calisma D` istemi göründükten sonra yazılır.
 
-## U1.1 Ham veri keşfi (20 dakika)
+## U1.1 Tekrar gönderilen gün (15 dakika)
 
-- Soru: Ocak 2024 toplu ulaşım dosyasında bir satırı hangi kolonlar tekil kılıyor?
-- `make sql` ile DuckDB'yi açıyor, `.read oturumlar/01/u1_1_ham_veri_kesfi.sql` ile başlangıç dosyasını çalıştırıyorsunuz. Dosya kolonları, satır sayısını ve ilk on satırı gösteriyor.
-- Ekrana sığmayan kolonlar `…` ile gizleniyor. `.last` komutu ilk on satırı bütün kolonlarıyla açıyor. Sağ ok tuşuyla kaydırıyor, `q` ile çıkıyorsunuz.
-- İlk on satıra bakıp bir satırı tekil kıldığını düşündüğünüz kolonları seçiyorsunuz. Tahmininizi aşağıdaki sorguyla sınıyorsunuz. `kolon_1, kolon_2` yerine kendi seçtiğiniz kolonları yazıyorsunuz:
+- Görev: Ocak 2024 toplu ulaşım dosyasında kaynağın iki kez gönderdiği günü buluyor ve o günün iki kez geldiğini gösteriyorsunuz.
+- `ham_ocak` tablosu anlatımda başlangıç dosyasıyla oluştu. Tablo yoksa DuckDB'de `.read oturumlar/01/u1_1_ham_veri_kesfi.sql` komutu tabloyu kurar.
+- Her günün satır sayısını ve toplam yolculuğunu veren sorgunun iskeleti aşağıdadır. `GROUP BY` ve `ORDER BY` satırlarını siz tamamlıyorsunuz; sıralama tekrar gönderilen günü listenin en üstüne getirir:
 
 ```
-SELECT count(*) FROM (
-  SELECT DISTINCT kolon_1, kolon_2
-  FROM ham_ocak);
+SELECT transition_date,
+       count(*) AS satir,
+       sum(number_of_passage) AS yolculuk
+FROM ham_ocak
+GROUP BY ...
+ORDER BY ...;
 ```
 
-- Sorguyu DuckDB'ye doğrudan yazıyorsunuz. Başlangıç dosyasını yeniden çalıştırmak tabloyu baştan kurar.
-- Sorgunun verdiği sayı satır sayısına eşitse seçtiğiniz kolonlar bir satırı tekil kılıyor. Küçükse bazı kombinasyonlar birden fazla satırda tekrar ediyor.
-- Seçtiğiniz kolonları ve sorgunun verdiği sayıyı Zoom sohbetine yazıyorsunuz.
-- Erken bitirenler bronze katmanında işaretlenmesi gereken bir anomali arıyor.
+- Bulduğunuz günü bir hafta önceki aynı günle karşılaştırıyorsunuz. Bunun için `WHERE` koşuluyla ikinci bir sorgu yazıyorsunuz; tarih `DATE '2024-01-15'` biçiminde yazılır.
+- Sorgular DuckDB'ye doğrudan yazılır ve noktalı virgülle biter. Ekrana sığmayan kolonlar `…` ile gizlenir; `.last` son sonucu bütün kolonlarıyla açar, q tuşu DuckDB'ye döner.
+- Günü ve iki satır sayısını Zoom sohbetine yazıyorsunuz.
+- Erken bitirenler `town` ve `number_of_passenger` kolonlarında kaç satırın boş olduğunu ve `line_name` kolonunda bozuk karakter taşıyan hat adlarını buluyor. Boş değeri `IS NULL` koşulu bulur.
 
-## U1.2 Bronze katmanı (25 dakika)
+## U1.2 Bronze tablosu (20 dakika)
 
-- Ocak 2024 dosyasını `lake.bronze.toplu_ulasim` adlı bir Iceberg tablosuna yüklüyorsunuz. Şubat dosyası aynı tabloya çözüm bölümünde eklenir.
-- Başlangıç kodu `oturumlar/01/u1_2_bronze.sql` dosyasındadır.
-- Partition dönüşümünü (ay, gün ya da ulaşım türü) siz seçiyorsunuz.
-- Deneme bittiğinde tablonun bir snapshot'ı olur; Şubat yüklemesinden sonra snapshot sayısı ikiye çıkar. Her kaynak dosyanın satır sayısı tabloda aynen yer alır ve her satır `_kaynak_dosya` ile `_yukleme_zamani` kolonlarını taşır.
-- Partition seçiminizi, satır sayısını ve snapshot sayısını Zoom sohbetine yazıyorsunuz.
-- Erken bitirenler `iceberg_metadata` ile partition seçiminin veri dosyası sayısına etkisini inceler.
+- Görev: Ocak ve Şubat 2024 dosyalarını `lake.bronze.toplu_ulasim` adlı bir Iceberg tablosuna yüklüyorsunuz.
+- Başlangıç kodu `oturumlar/01/u1_2_bronze.sql` dosyasındadır. Partition dönüşümünü `PARTITIONED BY` satırına yazıyor, dosyayı kaydediyor ve DuckDB'de `.read oturumlar/01/u1_2_bronze.sql` ile çalıştırıyorsunuz. Seçenekler: `month(transition_date)`, `day(transition_date)` ve `transport_type_id`.
+- Şubat dosyasını (`veri/toplu_ulasim_2024_02.csv.gz`) aynı tabloya `INSERT INTO lake.bronze.toplu_ulasim` ile ekliyorsunuz. `SELECT` kısmı Ocak'takiyle aynıdır, yalnızca dosya adı değişir. `INSERT INTO` kolonları sırayla eşler; `SELECT` listesinin sırası korunur.
+- Tablodaki satırları `_kaynak_dosya` kolonuna göre sayıyor ve `iceberg_snapshots('lake.bronze.toplu_ulasim')` ile snapshot sayısına bakıyorsunuz. Her kaynak dosyanın satır sayısı tabloda aynen yer alır ve tabloda iki snapshot bulunur.
+- Partition seçiminizi, toplam satır sayısını ve snapshot sayısını Zoom sohbetine yazıyorsunuz.
+- Şubat dosyası tabloya bir kez yüklenir. İki kez yüklendiyse tablo `DROP TABLE lake.bronze.toplu_ulasim;` ile silinir ve iki yükleme yeniden yapılır.
+- Erken bitirenler ilk snapshot'taki satır sayısını `AT (VERSION => ...)` ifadesiyle buluyor; snapshot kimliği `iceberg_snapshots` çıktısında yer alır.
 
-## U1.3 Mimari karar kaydı (20 dakika)
+## U1.3 Mimari karar kaydı (15 dakika)
 
-- Projenin ilk mimari karar kaydını `docs/kararlar/0001-mimari.md` dosyasında taslak olarak yazıyorsunuz.
+- Görev: Projenin ilk mimari karar kaydını `docs/kararlar/0001-mimari.md` dosyasında yazıyorsunuz.
 - Kayıt batch ve streaming bileşenlerini, gecikme hedefini, tablo formatını ve kataloğu belirler.
-- Uygulamanın sonunda kayıtta Durum satırı ve dolu dört bölüm (Bağlam, Karar, Gerekçe, Sonuçlar) bulunur. Gerekçe en az bir ölçülebilir ihtiyaca dayanır.
+- Kayıtta Durum satırı ve dolu dört bölüm (Bağlam, Karar, Gerekçe, Sonuçlar) bulunur. Karar bölümü tek cümledir; Gerekçe en az bir ölçülebilir ihtiyaca dayanır.
 - Kararın tek cümlelik özetini Zoom sohbetine yazıyorsunuz.
-- Erken bitirenler ikinci bir mimariyle maliyet ve yönetişim karşılaştırmasını karar kaydına "Elenen seçenekler" alt başlığıyla ekler.
+- Erken bitirenler elediği bir seçeneği ve elenme gerekçesini Gerekçe bölümüne "Elenen seçenekler:" satırıyla ekliyor.
 
 ## Oturumlar arası görev (30-45 dakika, Oturum 2'ye kadar)
 
