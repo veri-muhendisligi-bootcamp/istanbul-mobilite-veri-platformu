@@ -1,0 +1,8 @@
+-- silver.trafik | Oturumlar arası görev 02
+-- Kaynaklar: veri/api/trafik klasöründeki API yanıtları ve lake.bronze.trafik tablosu.
+-- Dosya make sql içinde .read sql/silver/trafik.sql ile çalışır. Tablo yoksa kurulur; iki kaynak MERGE ile yüklenir.
+-- Dosya ikinci kez çalıştığında tablo ve snapshot sayısı değişmez.
+--   1. Tablo tanımı (CREATE TABLE IF NOT EXISTS)
+--   2. trafik_api görünümü
+--   3. API yanıtlarının MERGE'ü
+--   4. Ocak satırlarının MERGE'ü
