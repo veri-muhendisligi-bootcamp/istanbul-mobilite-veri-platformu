@@ -1,56 +1,100 @@
 # Oturum 2 | Çalışma dosyası
 
-Bu dosya Oturum 2'nin üç uygulamasını tarif eder. Her blok kısa bir soruyla başlar, ardından konu anlatılır ve uygulama gelir. Uygulamanın çözümü bloğun sonunda birlikte yapılır.
+Bugünün bütün uygulamaları aynı beş adımla yapılır:
 
-`make sql` komutu DuckDB'yi lab kataloğuna bağlı olarak açar ve bütün sorgular bu oturumda çalışır. Bir SQL dosyası DuckDB içinde `.read` komutuyla çalışır; örnek: `.read oturumlar/02/u2_1_window.sql`. `make sql` ve `.read` ayrı ayrı yazılır: `.read` satırı DuckDB'nin `calisma D` istemi göründükten sonra yazılır. Oturum, Oturum 1'de kurulan `ham_ocak`, `lake.bronze.toplu_ulasim` ve `lake.bronze.trafik` tablolarını kullanır.
+1. Dosyayı soldaki gezginde `oturumlar/02` klasöründen açıyorsunuz.
+2. `___` ile işaretli boşlukları dolduruyorsunuz. Her boşluğun yanındaki not ne yazılacağını söyler.
+3. Dosyayı Ctrl+S (Mac'te Cmd+S) ile kaydediyorsunuz.
+4. Dosyayı DuckDB'de `.read` ve dosyanın yoluyla çalıştırıyorsunuz.
+5. Çıktıyı okuyorsunuz.
 
-## U2.1 Geçen haftaya göre değişim (20 dakika)
+Sorgular dosyada hazır gelir; en önemli parçasını siz yazarsınız. Böylece vakit yazım hatalarına değil, sorgunun ne yaptığını anlamaya gider. Sorgunun dosyada durması da düzeltip yeniden çalıştırmayı kolaylaştırır.
 
-- Görev: Ocak 2024'ün her gününü geçen haftanın aynı günüyle karşılaştırıyor ve yüzde 50'den fazla artan günü buluyorsunuz.
-- `hat_saatlik` tablosu anlatımda `.read oturumlar/02/u2_1_window.sql` komutuyla kuruldu. Tablonun bir satırı, bir saatte bir hattın yolculuk toplamıdır. Tablo yoksa aynı komut onu kurar.
-- Başlangıç kodu `oturumlar/02/u2_1_gecen_hafta.sql` dosyasındadır. Dosyadaki `gunluk` CTE'si her günün toplam yolculuğunu alır; `lag()` önceki bir günün yolculuğunu yanına getirir. `kac_satir` yerine kaç satır önceye bakılacağını yazıyor, dosyayı kaydediyor ve DuckDB'de `.read oturumlar/02/u2_1_gecen_hafta.sql` ile çalıştırıyorsunuz.
-- Sorguya geçen haftaya göre yüzde değişimi veren bir kolon ekliyorsunuz. Değişim, günün yolculuğunun geçen haftanın yolculuğuna bölümünden 1 çıkarılıp 100 ile çarpılmasıyla bulunur.
-- `QUALIFY` ile yüzde 50'den fazla artan günleri bırakıyorsunuz. `QUALIFY` satırı `FROM gunluk` ile `ORDER BY gun` arasına yazılır.
-- Bulduğunuz günü ve artış yüzdesini Zoom sohbetine yazıyorsunuz.
-- Erken bitirenler M2 hattının her saatteki yolculuğunun bir önceki saate göre farkını buluyor; önceki satır bir saat önce değilse fark boş kalır. Önceki satırın zamanı `lag(zaman)` ile okunur.
+Doldurulmamış bir boşluk hata verir ve hata mesajı boşluğun yerini `^^^` işaretiyle gösterir. Boşluğu doldurup dosyayı kaydettikten sonra dosya yeniden çalıştırılır.
 
-## U2.2 Plan avı (20 dakika)
+## Terminal mi, DuckDB mi?
 
-- Görev: İki sorgunun üç farklı fiziksel yerleşimde ne kadar veri okuduğunu ölçüyorsunuz.
-- `.read oturumlar/02/u2_2_plan_avi.sql` Ocak verisinden iki karşılaştırma tablosu kurar: `lake.bronze.deneme_gun` gün partition'lıdır, `lake.bronze.deneme_hat` partition'sızdır ve hat koduna göre sıralı yazılmıştır. Üçüncü yerleşim, Oturum 1'de kendi partition kararınızla kurduğunuz `lake.bronze.toplu_ulasim` tablosudur. Dosya ilk sorguyu kendi tablonuzda `EXPLAIN ANALYZE` ile çalıştırır.
-- `EXPLAIN ANALYZE` sorguyu çalıştırır ve planını ölçümleriyle gösterir. Planda üç değeri okuyorsunuz: `Summary` kutusundaki `Data Read`, `Table Scan` kutusundaki `Total Files Read` ve `Row Groups Scanned`. Planın en üstündeki `HTTPFS HTTP Stats` kutusu katalogla yapılan istekleri sayar; bu uygulamada kullanılmaz.
-- Dosyanın sonundaki iki sorguyu üç tabloda çalıştırıyorsunuz: tablo adını `toplu_ulasim`, `deneme_gun` ve `deneme_hat` olarak değiştiriyorsunuz. Sorgu 2'nin satırlarının başındaki `--` işaretlerini siliyorsunuz.
-- Altı ölçümü aşağıdaki tabloya yazıyorsunuz:
-
-| Tablo | Sorgu 1: okunan veri, dosya, row group | Sorgu 2: okunan veri, dosya, row group |
+| Satırın başı | Program | Buraya yazılanlar |
 |---|---|---|
-| `toplu_ulasim` | | |
-| `deneme_gun` | | |
-| `deneme_hat` | | |
+| `$` ile biter | Terminal | `make` ve `git` komutları |
+| `calisma D` ile başlar | DuckDB | SQL sorguları, `.read` ve `.quit` |
 
-- Zoom sohbetine her sorgu için en az veriyi okuyan tabloyu ve okuduğu veri miktarını yazıyorsunuz.
-- Erken bitirenler Sorgu 1'i `SELECT *` ile çalıştırıyor ve okunan veriyi tek kolonlu sorguyla karşılaştırıyor.
+- DuckDB terminalde `make sql` komutuyla açılır, `.quit` komutuyla kapanır.
+- Uzun süren bir sorgu Ctrl+C ile durur.
+- SQL sorgusu `;` ile biter. Enter'dan sonra imleç yeni satıra geçiyorsa sorgunun sonuna `;` yazıp Enter'a basıyorsunuz.
 
-## U2.3 API yanıtlarından MERGE (20 dakika)
+## Hazırlık
 
-- Görev: Trafik API'sinin kayıtlı yanıtlarını `lake.silver.trafik` tablosuna, ikinci kez çalıştığında tabloyu değiştirmeyen bir MERGE ile yüklüyorsunuz. Aynı ölçüm iki çekimde farklı değerle gelirse en son çekilen kayıt kalır.
-- `veri/api/trafik` klasöründeki üç JSON dosyası, trafik API'sinin 1 Şubat 2024 için kayıtlı yanıtlarıdır. İki dosya 2 Şubat 01:10'daki çekimin iki sayfasıdır. Üçüncü dosya 3 Şubat 01:10'daki çekimdir ve 21:00, 22:00 ve 23:00 saatlerini yeniden verir.
-- `.read oturumlar/02/u2_3_merge.sql` yanıtın yapısını gösterir, kayıtları `trafik_api` görünümünde tipli satırlara çevirir, boş `lake.silver.trafik` tablosunu kurar ve `yukleme_kontrol` makrosunu tanımlar.
-- `FROM yukleme_kontrol('lake.silver.trafik');` tabloyu dört ölçüyle sınar: satır sayısı, tekil anahtar sayısı, snapshot sayısı ve kaynak CSV dosyasıyla fark. Doğru bir yüklemede fark 0 olur.
-- Dosyanın sonundaki MERGE kalıbında `/* */` ile işaretli üç yeri dolduruyorsunuz: anahtar kolonlar, kazanan kayıt kuralı ve iki tablo arasındaki anahtar eşitliği. Veri sözlüğüne göre bir satır, verilen saatte bir geohash alanının ölçümüdür. Satır başlarındaki `--` işaretlerini siliyorsunuz.
-- MERGE'ü çalıştırıyor ve kontrolü çalıştırıyorsunuz. Aynı MERGE'ü ikinci kez çalıştırıyor ve kontrolü yeniden çalıştırıyorsunuz.
-- Hatalı bir çalıştırmadan sonra `.read oturumlar/02/u2_3_merge.sql` tabloyu boş haline döndürür.
-- Zoom sohbetine seçtiğiniz anahtar kolonları, kazanan kayıt kuralını ve iki çalıştırmadan sonraki kontrol değerlerini yazıyorsunuz.
-- Erken bitirenler kayıtlarda duran `_id` alanının iki çekimde aynı ölçümü gösterip göstermediğini sınıyor: aynı `_id` değerinin birden fazla `DATE_TIME` ve `GEOHASH` çiftiyle gelip gelmediğini sayıyor.
+Terminalde:
 
-## Oturumlar arası görev (60-90 dakika, Oturum 3'e kadar)
+```
+make oturum N=02
+make sql
+```
 
-- Bronze tablolarından silver katmanı kurulur. `lake.silver.toplu_ulasim` tekrar gönderilen günleri ayıklar, bozuk hat kodlarını düzeltir, gün ve saati İstanbul saatiyle zaman damgasına çevirir ve parçaları yayımlanan boyutlara göre toplar.
-- `lake.silver.trafik` tablosuna Ocak satırları Blok 3'teki MERGE ile `lake.bronze.trafik` tablosundan eklenir.
-- Sorgular `sql/silver/toplu_ulasim.sql` ve `sql/silver/trafik.sql` dosyalarına yazılır ve `git push` ile deponuza gönderilir. İki dosya bu oturumun paketiyle başlık satırlarıyla gelir.
-- Kontrol komutu `make odev-kontrol N=02` olur. Bütün adımlar TAMAM olduğunda betik kanıt kodunu yazar; kod ve depo bağlantısı Tech İstanbul platformundaki göreve yüklenir.
-- Görevin ayrıntıları `Data-Engineering-Oturum-02-Odev.docx` dosyasındadır.
+DuckDB'de:
+
+```
+.read oturumlar/02/hazirlik.sql
+```
+
+Son satır `HAZIR: ham_ocak 17.283.355 satır, bronze tablosu 34.241.461 satır` yazar. Tablolar doğruysa dosya birkaç saniyede biter. Eksik tablo ya da iki kez yüklenmiş dosya varsa dosya onu düzeltir ve bir dakika kadar sürer. Son satırda `EKSİK` ya da bir hata görürseniz o satırı sohbete kopyalıyorsunuz.
+
+## Blok 1 | Window fonksiyonları
+
+Amaç: tuhaf bir günü rapora girmeden yakalamak. Bir sayı tek başına doğrulanamaz; geçen haftanın aynı günüyle karşılaştırılır, çünkü hafta içi ile hafta sonu çok farklıdır. Window fonksiyonları bu karşılaştırmayı bütün günler için tek sorguda yapar.
+
+Örnekler: `.read oturumlar/02/b1_ornekler.sql`
+
+**Uygulama 1: geçen haftayla karşılaştırma (18 dakika)**
+
+- Dosya: `oturumlar/02/u2_1_gecen_hafta.sql`
+- ① `lag` fonksiyonuna bir hafta önceki günün kaç satır yukarıda olduğunu yazıyorsunuz.
+- ② Sonucu en büyük farka göre sıralayan kolonun adını yazıyorsunuz.
+- Çalıştırma: `.read oturumlar/02/u2_1_gecen_hafta.sql`
+- Sohbete: en üstteki gün ve fark.
+- İleri görev: dosyanın sonundaki sorgu farkı yüzde olarak gösterir. `/*` ve `*/` satırlarını silip ③ numaralı boşluğu dolduruyorsunuz.
+
+## Blok 2 | Tekrar eden veri
+
+Amaç: raporu şişiren fazlalığı çıkarmak, gerçek yolculuğu silmeden. Bu veride her kolonu aynı satır çoğu zaman ayrı bir yolculuktur; `DISTINCT` bu satırları da siler. Tekrar satırdan değil günden anlaşılır: iki kez gelen günün satır sayısı geçen haftanın iki katıdır.
+
+Örnekler: `.read oturumlar/02/b2_ornekler.sql`
+
+**Uygulama 2: tekrar gönderilen günler (18 dakika)**
+
+- Dosya: `oturumlar/02/u2_2_tekrar_gunu.sql`
+- Önce yalnızca ① numaralı boşluğu dolduruyorsunuz: Uygulama 1'deki sayı. Dosyayı kaydedip çalıştırıyorsunuz. Adım 1 tekrar gönderilen günleri gösterir, ardından dosya ② numaralı boşlukta durur.
+- ② numaralı boşluğa Adım 1'in bulduğu Şubat gününü `YYYY-AA-GG` biçiminde yazıyorsunuz. Dosyayı kaydedip yeniden çalıştırıyorsunuz.
+- Çalıştırma: `.read oturumlar/02/u2_2_tekrar_gunu.sql`
+- Sohbete: Şubat'taki gün ve o günün düzeltilmiş yolculuğu.
+- İleri görev: dosyanın sonundaki sorgu Mart dosyasındaki tekrar gönderilen günü bulur. `/*` ve `*/` satırlarını silip ③ numaralı boşluğa Mart dosyasının adını yazıyorsunuz.
+
+## Blok 3 | Sorgu ne kadar veri okuyor?
+
+Amaç: tablo büyürken raporu hızlı ve ucuz tutmak. Tablo her ay yaklaşık 17 milyon satır büyür. Az okuyan sorgu daha hızlı biter; bazı bulut veri ambarları sorgu başına taranan veri kadar ücret alır.
+
+Örnekler: `.read oturumlar/02/b3_ornekler.sql`
+
+**Uygulama 3: üç sorgu, üç okuma (18 dakika)**
+
+- Dosya: `oturumlar/02/u2_3_okunan_veri.sql`
+- ① yolculuk sayısını taşıyan kolonun, ② hat kodunu taşıyan kolonun adını yazıyorsunuz. Kolon adlarını `DESCRIBE lake.bronze.toplu_ulasim;` gösterir.
+- Çalıştırmadan önce hangi sorgunun en az, hangisinin en çok veri okuyacağını tahmin ediyorsunuz.
+- Çalıştırma: `.read oturumlar/02/u2_3_okunan_veri.sql`
+- Her planın üstündeki Summary kutusunda Data Read satırını okuyorsunuz.
+- Sohbete: üç sorgunun Data Read değeri.
+- İleri görev: dosyanın sonundaki sorgu yalnızca Şubat'ı okur. `/*` ve `*/` satırlarını silip planın Total Files Read satırına bakıyorsunuz.
+
+## Ödev (30 Kasım Pazartesi'ye kadar, 60-90 dakika)
+
+Amaç: aylık hat raporunun okuyacağı ilk silver tablosunu ve platformun ikinci kaynağı olan trafik verisinin bronze tablosunu kurmak.
+
+- `sql/bronze/trafik.sql`: trafik verisinin Ocak dosyasını bronze katmanına yükler. İki boşluk: tarih kolonunun adı ve dosyanın adı.
+- `sql/silver/toplu_ulasim.sql`: ilk silver tablosunu kurar; parça satırları toplar ve tekrar gönderilen günleri ikiye böler. İki boşluk: tarih kolonu ve Şubat'ta tekrar gönderilen gün.
+- İki dosya DuckDB'de `.read` ile çalışır. Kontrol için DuckDB'den `.quit` ile çıkıp terminalde `make odev-kontrol N=02` yazıyorsunuz.
+- Adımların tamamı ve teslim ödev belgesinde anlatılır.
 
 ## Ortam çalışmazsa
 
-Uygulamalar eğitmen ekranından takip edilir ve aynı görevler oturumdan sonra tamamlanır.
+Uygulamalar eğitmen ekranından izlenir ve aynı dosyalar oturumdan sonra çalıştırılır.
