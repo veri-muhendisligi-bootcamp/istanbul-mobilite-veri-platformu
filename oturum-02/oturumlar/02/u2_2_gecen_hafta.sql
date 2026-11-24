@@ -1,7 +1,7 @@
--- Oturum 2 | Uygulama 1: her günü geçen haftanın aynı günüyle karşılaştırmak
+-- Oturum 2 | Uygulama 2: her günü geçen haftanın aynı günüyle karşılaştırmak
 -- 1. ___ yazan iki yeri doldurun.
 -- 2. Dosyayı kaydedin: Ctrl+S
--- 3. DuckDB'de çalıştırın: .read oturumlar/02/u2_1_gecen_hafta.sql
+-- 3. DuckDB'de çalıştırın: .read oturumlar/02/u2_2_gecen_hafta.sql
 -- Sonuç farkı en büyük beş günü gösterir. En üstteki günü ve farkı sohbete yazın.
 
 -- Ocak'ın günlük yolculuk toplamı (örnek dosyadaki tabloyla aynı)

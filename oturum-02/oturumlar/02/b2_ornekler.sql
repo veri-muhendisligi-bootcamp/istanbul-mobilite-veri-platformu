@@ -1,35 +1,46 @@
--- Oturum 2 | Blok 2 örnekleri: tekrar mı, parça mı?
+-- Oturum 2 | Blok 2 örnekleri: window fonksiyonları
 -- DuckDB'de çalışır: .read oturumlar/02/b2_ornekler.sql
+-- Dosya önce iki küçük tablo kurar, sonra anlatımdaki dört örneği sırayla çalıştırır.
 
--- Örnek 1: sıradan bir gün, 3 Ocak. Her kolonu aynı olan satırlardan üç örnek.
--- adet: aynı satırın tabloda kaç kez geçtiği
-SELECT line_name, town, transition_hour, number_of_passage, adet
-FROM (SELECT *, count(*) AS adet
-      FROM ham_ocak
-      WHERE transition_date = DATE '2024-01-03'
-      GROUP BY ALL)
-WHERE adet > 1
-ORDER BY adet DESC, line_name
-LIMIT 3;
-
--- Örnek 2: 3 Ocak'ın satır sayısı ve yolculuğu; önce bütün satırlar, sonra DISTINCT ile tekil satırlar
-SELECT count(*) AS satir, sum(number_of_passage) AS yolculuk
+-- Ocak'ın günlük yolculuk toplamı: 31 satır, her gün bir satır
+CREATE OR REPLACE TABLE gunluk AS
+SELECT transition_date AS gun,
+       ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'][dayofweek(transition_date) + 1] AS gun_adi,
+       sum(number_of_passage) AS yolculuk
 FROM ham_ocak
-WHERE transition_date = DATE '2024-01-03';
+GROUP BY ALL;
 
-SELECT count(*) AS satir, sum(number_of_passage) AS yolculuk
-FROM (SELECT DISTINCT *
-      FROM ham_ocak
-      WHERE transition_date = DATE '2024-01-03');
-
--- Örnek 3: 10 Ocak'ın yolculuğu, düzeltmeden önce ve sonra
-SELECT sum(number_of_passage) AS once,
-       sum(number_of_passage) // 2 AS sonra
+-- Üç hattın günlük yolculuk toplamı: 93 satır, her hat ve gün bir satır
+CREATE OR REPLACE TABLE hat_gunluk AS
+SELECT transition_date AS gun, line_name AS hat, sum(number_of_passage) AS yolculuk
 FROM ham_ocak
-WHERE transition_date = DATE '2024-01-10';
+WHERE line_name IN ('M2', 'M4', 'MARMARAY')
+GROUP BY ALL;
 
--- Örnek 4: her dosya bronze tablosuna kaç kez yüklenmiş?
-SELECT _kaynak_dosya, count(DISTINCT _yukleme_zamani) AS yukleme, count(*) AS satir
-FROM lake.bronze.toplu_ulasim
-GROUP BY ALL
-ORDER BY _kaynak_dosya;
+-- Örnek 1: her günün yanında ayın toplamı
+SELECT gun, gun_adi, yolculuk,
+       sum(yolculuk) OVER () AS ay_toplami
+FROM gunluk
+ORDER BY gun
+LIMIT 5;
+
+-- Örnek 2: günlerin kalabalık sırası
+SELECT gun, gun_adi, yolculuk,
+       row_number() OVER (ORDER BY yolculuk DESC) AS sira
+FROM gunluk
+ORDER BY sira
+LIMIT 5;
+
+-- Örnek 3: her hattın en kalabalık iki günü
+SELECT hat, gun, yolculuk,
+       row_number() OVER (PARTITION BY hat ORDER BY yolculuk DESC) AS sira
+FROM hat_gunluk
+QUALIFY sira <= 2
+ORDER BY hat, sira;
+
+-- Örnek 4: bir önceki günün yolculuğu
+SELECT gun, gun_adi, yolculuk,
+       lag(yolculuk) OVER (ORDER BY gun) AS onceki_gun
+FROM gunluk
+ORDER BY gun
+LIMIT 5;

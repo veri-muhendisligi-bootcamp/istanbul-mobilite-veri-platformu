@@ -17,7 +17,7 @@ GROUP BY ALL;
 UPDATE lake.silver.toplu_ulasim
 SET number_of_passage = number_of_passage // 2,
     number_of_passenger = number_of_passenger // 2
-WHERE transition_date IN (DATE '2024-01-10', DATE '___');   -- ② Uygulama 2'de bulunan Şubat günü
+WHERE transition_date IN (DATE '2024-01-10', DATE '___');   -- ② Uygulama 3'te bulunan Şubat günü
 
 -- Kontrol: dört çarşambanın yolculuğu
 SELECT transition_date AS gun, sum(number_of_passage) AS yolculuk

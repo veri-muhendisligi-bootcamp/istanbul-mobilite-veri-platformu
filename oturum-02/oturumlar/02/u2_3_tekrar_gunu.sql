@@ -1,11 +1,11 @@
--- Oturum 2 | Uygulama 2: tekrar gönderilen günleri bulmak ve düzeltmek
--- 1. Önce ① numaralı boşluğu doldurun, kaydedin ve çalıştırın: .read oturumlar/02/u2_2_tekrar_gunu.sql
+-- Oturum 2 | Uygulama 3: tekrar gönderilen günleri bulmak ve düzeltmek
+-- 1. Önce ① numaralı boşluğu doldurun, kaydedin ve çalıştırın: .read oturumlar/02/u2_3_tekrar_gunu.sql
 -- 2. Adım 1'in sonucunda Şubat'taki günü bulun, ② numaralı boşluğa yazın, kaydedin ve dosyayı yeniden çalıştırın.
 -- Şubat'taki günü ve o günün düzeltilmiş yolculuğunu sohbete yazın.
 
 -- Adım 1: her günün satır sayısı ve geçen haftanın aynı gününe göre kaç kat olduğu
 SELECT gun, satir,
-       lag(satir, ___) OVER (ORDER BY gun) AS gecen_hafta,     -- ① Uygulama 1'deki sayı
+       lag(satir, ___) OVER (ORDER BY gun) AS gecen_hafta,     -- ① Uygulama 2'deki sayı
        round(satir / gecen_hafta, 2) AS kat
 FROM (SELECT transition_date AS gun, count(*) AS satir
       FROM lake.bronze.toplu_ulasim
