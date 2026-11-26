@@ -1,8 +1,8 @@
 # İstanbul Mobilite Veri Platformu
 
-Bu depo, Tech İstanbul Data Engineering Online Bootcamp'inin lab ortamını ve bitirme projesinin başlangıç iskeletini taşır. On oturum boyunca İstanbul'un toplu ulaşım ve trafik verisini işleyen uçtan uca bir veri platformunu bu depo üzerinde kurarsınız.
+Bu depo, Tech Istanbul Data Engineering Bootcamp'inin lab ortamını ve bitirme projesinin başlangıç iskeletini taşır. On oturum boyunca İstanbul'un toplu ulaşım ve trafik verisini işleyen uçtan uca bir veri platformunu bu depo üzerinde kurarsınız.
 
-## Ortamın kurulması
+## Ortamın Kurulması
 
 Lab, GitHub Codespaces üzerinde tarayıcıda çalışır; bilgisayarınıza program kurmanız ya da yönetici yetkisi almanız gerekmez. Kurulum Oturum 1'de birlikte yapılır ve dört adımdan oluşur:
 
@@ -13,7 +13,7 @@ Lab, GitHub Codespaces üzerinde tarayıcıda çalışır; bilgisayarınıza pro
 
 Bitirme projesi herkese açık bir depo olarak teslim edildiği için depo baştan "Public" açılır. Depoya parola, kimlik bilgisi ya da kişisel veri girmez.
 
-## Codespace'e dönüş ve çalışmanın kaydı
+## Codespace'e Dönüş Ve Çalışmanın Kaydı
 
 github.com/codespaces sayfası Codespace'lerinizi listeler. Deponuzun Codespace'inin adına tıkladığınızda Codespace tarayıcıda açılır; durmuşsa yeniden başlar. PostgreSQL ve Polaris her açılışta kendiliğinden başlar.
 
@@ -71,7 +71,7 @@ Lab sürümleri eğitim boyunca sabit kalır.
 
 Python paketlerinin tam listesi `lab/gereksinimler/` klasöründeki kilit dosyalarında durur.
 
-## Veri ve lisans
+## Veri Ve Lisans
 
 Lab, İstanbul Büyükşehir Belediyesi Açık Veri Portalı'ndaki (data.ibb.gov.tr) iki veri setini kullanır:
 
@@ -80,7 +80,7 @@ Lab, İstanbul Büyükşehir Belediyesi Açık Veri Portalı'ndaki (data.ibb.gov
 
 İBB bu veri setlerini İBB Açık Veri Lisansı ile yayımlar ve lisans kaynak gösterimini zorunlu tutar. Lab kopyası eğitim için yeniden düzenlendiğinden sonuçlar İBB'nin yayımladığı dosyalarla birebir örtüşmeyebilir. Ayrıntılar `veri/OKU-BENI.md` dosyasında yer alır.
 
-## Codespaces kotası
+## Codespaces Kotası
 
 Kişisel GitHub hesabı her ay 120 çekirdek-saat işlem ve 15 GB-ay depolama kotasıyla gelir. 2 çekirdekli lab makinesinde aylık işlem kotası 60 saatlik çalışmaya karşılık gelir. Hesapta ödeme yöntemi tanımlı değilse kota bittiğinde Codespaces durur ve ücret çıkmaz.
 
@@ -92,7 +92,7 @@ Kotayı üç kural korur:
 
 Kullanım miktarı github.com/settings/billing sayfasında görünür.
 
-## Sorun giderme
+## Sorun Giderme
 
 `make kontrol` Polaris ve veri dosyaları adımlarında HATA satırına çözüm komutunu da yazar. Diğer durumların çözümü aşağıdaki tablodadır.
 
