@@ -1,4 +1,4 @@
-# Oturum 3 | Çalışma dosyası
+# Oturum 3 | Çalışma Dosyası
 
 Bugünün bütün uygulamaları aynı beş adımla yapılır:
 
@@ -10,7 +10,7 @@ Bugünün bütün uygulamaları aynı beş adımla yapılır:
 
 Doldurulmamış bir boşluk hata verir ve hata mesajı boşluğun yerini `^^^` işaretiyle gösterir. Boşluğu doldurup dosyayı kaydettikten sonra dosya yeniden çalıştırılır. Uygulama dosyaları tablolarını her çalışmada baştan kurar; bir dosyayı ikinci kez çalıştırmak sonucu değiştirmez.
 
-## Terminal mi, DuckDB mi?
+## Terminal Mi, DuckDB Mi?
 
 | Satırın başı | Program | Buraya yazılanlar |
 |---|---|---|
@@ -21,7 +21,7 @@ Doldurulmamış bir boşluk hata verir ve hata mesajı boşluğun yerini `^^^` i
 - Uzun süren bir sorgu Ctrl+C ile durur.
 - SQL sorgusu `;` ile biter. Enter'dan sonra imleç yeni satıra geçiyorsa sorgunun sonuna `;` yazıp Enter'a basıyorsunuz.
 
-## Ödev kontrolü
+## Ödev Kontrolü
 
 Çarşamba ödevinin kontrolü hazırlıktan önce, terminalde ve DuckDB açılmadan yapılır:
 
@@ -29,7 +29,7 @@ Doldurulmamış bir boşluk hata verir ve hata mesajı boşluğun yerini `^^^` i
 make odev-kontrol N=02
 ```
 
-Kontrol önce yapılır, çünkü hazırlık dosyası silver tablosunu herkes için aynı hale getirir; kontrol ödevdeki hali ölçer. Üç adım TAMAM yazarsa son satır kanıt kodunu verir. Kanıt kodu ve depo bağlantısı platformdaki göreve yüklenir. HATA yazan satırın açıklaması eksik adımı gösterir; o satırı sohbete kopyalıyorsunuz.
+Kontrol önce yapılır, çünkü hazırlık dosyası silver tablosunu herkes için aynı hale getirir; kontrol ödevdeki hali ölçer. Üç adım TAMAM yazarsa son satır kanıt kodunu verir. Kanıt kodu ve depo bağlantısı Airtable'a yüklenir. HATA yazan satırın açıklaması eksik adımı gösterir; o satırı sohbete kopyalıyorsunuz.
 
 ## Hazırlık
 
@@ -48,7 +48,7 @@ DuckDB'de:
 
 Son satır `HAZIR: silver tablosu 16.779.679 satır, 421.347.288 yolculuk` yazar. Silver tablosu doğruysa dosya birkaç saniyede biter. Tablo yoksa ya da sayıları farklıysa dosya onu bronze tablosundan yeniden kurar ve bir dakika kadar sürer. Dosya ödev dosyalarına dokunmaz. Son satırda `EKSİK` ya da bir hata görürseniz o satırı sohbete kopyalıyorsunuz.
 
-## Blok 1 | Tablolar ve anahtarlar
+## Blok 1 | Tablolar Ve Anahtarlar
 
 Amaç: hat bilgisini tek bir tabloda tutmak ve toplamı bozmadan bağlamak. Silver tablosu güzergah adını her satırda yeniden yazar: 54E'nin adı iki farklı yazımla 11.547 satırda geçer. Normalizasyon tekrar eden bilgiyi her hattın tek satır olduğu bir tabloya alır; tablolar anahtarla, `JOIN` ile bağlanır. Anahtar tekil olmalıdır: bir hat iki satırla gelirse `JOIN` o hattın yolculuğunu iki kez sayar.
 
@@ -65,7 +65,7 @@ Amaç: hat bilgisini tek bir tabloda tutmak ve toplamı bozmadan bağlamak. Silv
 - Sohbete: üç yol türünün yolculuğu.
 - İleri görev: Şubat'ta çalışıp Ocak'ın hat tablosunda olmayan hatlar. `/*` ve `*/` satırlarını silip ④ numaralı boşluğu dolduruyorsunuz.
 
-## Blok 2 | Boyutsal model
+## Blok 2 | Boyutsal Model
 
 Amaç: raporun sorularını küçük ve doğru tablolardan cevaplamak. Grain, bir satırın neyi anlattığıdır: silver tablosunda bir saatte bir durakta bir kart türüyle yapılan yolculuklar, raporun fact tablosunda bir hattın bir günü. Ortalama bu tanıma göre alınır: M2'nin silver satırlarının ortalaması 59,3, günlük ortalaması 461.637. Fact tablosu sayıları, boyut tabloları hat ve tarih bilgisini tutar. Metriğin tanımı bir görünümde (VIEW) tek yerde durur.
 
@@ -82,7 +82,7 @@ Amaç: raporun sorularını küçük ve doğru tablolardan cevaplamak. Grain, bi
 - Sohbete: en üstteki hat ve ortalaması.
 - İleri görev: Ocak yolculuğunun yüzde kaçını en kalabalık 10 hat taşıyor? `/*` ve `*/` satırlarını silip ④ numaralı boşluğu dolduruyorsunuz.
 
-## Blok 3 | Değişen hat bilgisi
+## Blok 3 | Değişen Hat Bilgisi
 
 Amaç: hat bilgisi değişince geçmiş raporları bozmadan boyutu güncellemek. Yazım düzeltmesi üzerine yazılır (SCD Tip 1). Gerçek bir değişiklik yeni sürüm açar ve eski sürüm kapanır (SCD Tip 2); Ocak raporu Ocak'ın bilgisini göstermeye devam eder. `MERGE` iki tabloyu tek komutta karşılaştırır: eşleşen satırı günceller, eşleşmeyeni ekler. 500T'nin güzergah değişikliği eğitim için eklenmiş bir örnektir.
 
@@ -99,7 +99,7 @@ Amaç: hat bilgisi değişince geçmiş raporları bozmadan boyutu güncellemek.
 - Sohbete: 500T'nin iki satırı.
 - İleri görev: Ocak'ta çalışıp Şubat listesinde olmayan hatlar. `/*` ve `*/` satırlarını silip ④ numaralı boşluğu dolduruyorsunuz; bu hatların sürümü için ne yapılması gerektiğini sohbete yazıyorsunuz.
 
-## Blok 4 | Sorgu maliyeti
+## Blok 4 | Sorgu Maliyeti
 
 Amaç: raporun sorgularının okuduğu veriyi ölçmek ve azaltmak. Bulut veri ambarı sorgunun okuduğu veri kadar ücret alır. `EXPLAIN ANALYZE` sorguyu çalıştırır ve okunan veriyi, dosyaları ve satır gruplarını gösterir. Okunan veri dört yolla azalır: yalnızca gereken kolonu seçmek, partition pruning, clustering ve küçük bir fact tablosundan okumak.
 
@@ -121,6 +121,6 @@ Her planda üç satıra bakılır: Summary kutusunda `Data Read`, Table Scan kut
 
 Bugün ödev verilmez. Ödev çarşamba günü verilir ve bir sonraki pazartesiye kadar sürer.
 
-## Ortam çalışmazsa
+## Ortam Çalışmazsa
 
 Uygulamalar eğitmen ekranından izlenir ve aynı dosyalar oturumdan sonra çalıştırılır.
